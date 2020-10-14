@@ -4,8 +4,8 @@
     </div>
     <div class="menu-links">
         <ul class="menu">
-            <li class="links" routerLink="/">Tracker</li>
-            <li class="links" routerLink="/about">About</li>
+            <li class="links" routerLink="/" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">Tracker</li>
+            <li class="links" routerLink="/about" [routerLinkActive]="['active']" >About</li>
         </ul>
     </div>
 </div>
