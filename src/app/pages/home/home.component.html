@@ -1,0 +1,188 @@
+<div class="row px-2 justify-content-around">
+    <div class="col-lg-7 border rounded py-2">
+        <div class="alert stats-header">
+            Stats Overview 
+
+            <select name="country" class="form-control" id="country" (change)="savecountry($event)">
+                <option value="worldwide">Worldwide</option>
+                <ng-container *ngFor="let opt of countryOptions">
+                    <option [value]="opt.name">{{opt.name}}</option>
+                </ng-container>
+            </select>
+
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="alert alert-primary">
+                    <div class="loader" *ngIf="!statsLoaded; else tcloaded"></div>
+                    <ng-template #tcloaded>
+                      {{todayCases |number}}  
+                    </ng-template>
+                    <div class="alert-label mt-4">New</div>
+                </div>
+            </div> 
+
+            <div class="col-lg-3">
+                <div class="alert alert-danger">
+                    <div class="loader" *ngIf="!statsLoaded; else cloaded"></div>
+                    <ng-template #cloaded>
+                      {{cases |number}}  
+                    </ng-template>
+                    <div class="alert-label mt-4">Confirmed</div>
+                </div>
+            </div> 
+
+            <div class="col-lg-3">
+                <div class="alert alert-success">
+                    <div class="loader" *ngIf="!statsLoaded; else rloaded"></div>
+                    <ng-template #rloaded>
+                      {{recovered |number}}  
+                    </ng-template>
+                    <div class="alert-label mt-4">Recovered</div>
+                </div>
+            </div> 
+
+            <div class="col-lg-3">
+                <div class="alert alert-dark">
+                    <div class="loader" *ngIf="!statsLoaded; else dloaded"></div>
+                    <ng-template #dloaded>
+                      {{deaths|number}}  
+                    </ng-template>
+                    <div class="alert-label mt-4">Deaths</div>
+                </div>
+            </div> 
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-lg-5 d-flex align-items-center">
+                <strong>Est. Population: </strong><div class="loader" *ngIf="!statsLoaded; else ploaded"></div>
+                <ng-template #ploaded>
+                  {{population|number}}  
+                </ng-template>
+            </div>
+            <div class="col-lg-3 d-flex align-items-center">
+               <strong>Fatality Rate: </strong><div class="loader" *ngIf="!statsLoaded; else floaded"></div>
+               <ng-template #floaded>
+                 {{fatality}} %  
+               </ng-template> 
+            </div>
+            <div class="col-lg-4 d-flex align-items-center">
+               <strong>Recovery Rate: </strong><div class="loader" *ngIf="!statsLoaded; else recloaded"></div>
+               <ng-template #recloaded>
+                 {{recovery}} % 
+               </ng-template>  
+            </div>
+        </div>
+        <hr>
+
+        <div class="alert stats-header">Records these past 10 Days </div>
+        <div class="flex">
+            <div class="flex-item">
+              <div style="display: block;">
+              <canvas baseChart width="400" height="200"
+                          [datasets]="lineChartData"
+                          [labels]="lineChartLabels"
+                          [options]="lineChartOptions"
+                          [colors]="lineChartColors"
+                          [legend]="lineChartLegend"
+                          [chartType]="lineChartType"
+                          (chartHover)="chartHovered($event)"></canvas>
+              </div>
+            </div>
+          </div>
+    
+    </div>
+    <div class="col-lg-5 py-2">
+        <div class="alert stats-country">Top 10 Affected Countries</div>
+            <p class="alert alert-info">Note: Click country name to view more info.</p>
+            <table class="table">
+                <thead>
+                    <th>Country</th>
+                    <th>Confirmed</th>
+                    <th>Recovered</th>
+                    <th>Deaths</th>
+                </thead>
+
+                <tbody *ngIf="!countryLoaded; else tableloaded">
+                    <tr>
+                        <td><div class="loader"></div></td>
+                        <td><div class="loader"></div></td>
+                        <td><div class="loader"></div></td>
+                        <td><div class="loader"></div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="loader"></div></td>
+                        <td><div class="loader"></div></td>
+                        <td><div class="loader"></div></td>
+                        <td><div class="loader"></div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="loader"></div></td>
+                        <td><div class="loader"></div></td>
+                        <td><div class="loader"></div></td>
+                        <td><div class="loader"></div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="loader"></div></td>
+                        <td><div class="loader"></div></td>
+                        <td><div class="loader"></div></td>
+                        <td><div class="loader"></div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="loader"></div></td>
+                        <td><div class="loader"></div></td>
+                        <td><div class="loader"></div></td>
+                        <td><div class="loader"></div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="loader"></div></td>
+                        <td><div class="loader"></div></td>
+                        <td><div class="loader"></div></td>
+                        <td><div class="loader"></div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="loader"></div></td>
+                        <td><div class="loader"></div></td>
+                        <td><div class="loader"></div></td>
+                        <td><div class="loader"></div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="loader"></div></td>
+                        <td><div class="loader"></div></td>
+                        <td><div class="loader"></div></td>
+                        <td><div class="loader"></div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="loader"></div></td>
+                        <td><div class="loader"></div></td>
+                        <td><div class="loader"></div></td>
+                        <td><div class="loader"></div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="loader"></div></td>
+                        <td><div class="loader"></div></td>
+                        <td><div class="loader"></div></td>
+                        <td><div class="loader"></div></td>
+                    </tr>
+                </tbody>
+
+                <ng-template #tableloaded>
+                  <tbody>
+                        <tr *ngFor="let item of all | slice:0:10">
+                            <td class="country" (click)="getPastTenDays(item.countryInfo._id)"><img class="flag" src="{{item.countryInfo.flag}}"/> {{item.country}}</td>
+                            <td>{{item.cases |number}}</td>
+                            <td>{{item.recovered |number}}</td>
+                            <td>{{item.deaths |number}}</td>
+                        </tr>
+                    
+                </tbody>  
+                </ng-template>
+                
+            </table>
+        
+    </div>   
+</div>
+
+

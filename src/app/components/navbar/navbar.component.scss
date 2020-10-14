@@ -1,0 +1,45 @@
+.navigation{
+    height:10vh;
+    display: flex;
+    position:fixed;
+    width:100%;
+    justify-content: space-between;
+    align-items: center;
+    background:#0abab5;
+    padding:0 30px;
+    color:#fff;
+    top:0;
+    z-index:10;
+
+    .brand{
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    .menu-links{
+        display: flex;
+        align-items: center; 
+        .menu{
+            all:unset;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            list-style: none; 
+        }
+
+        .links{
+            padding:0 20px;
+            cursor: pointer;
+            transition: all .3s ease-in-out;
+        }
+
+        .links:hover{
+            font-weight: bold;
+        }
+
+        .links .active{
+            font-weight: bold;
+            text-decoration:underline;
+        }
+    }
+}
